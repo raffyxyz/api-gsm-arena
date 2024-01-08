@@ -6,6 +6,7 @@ This is an unofficial GSM Arena API that provides smartphone information like pr
 </p>
 
 ## Installation
+
 ### Local
 
 Run this command to install the api locally
@@ -17,53 +18,61 @@ $ npm install #or yarn install
 ```
 
 Edit .env file
+
 ```env
 GSM_ARENA_URL=https://www.gsmarena.com
 ```
 
 Start the server
+
 ```sh
 npm start
 ```
 
 ### Vercel
+
 Host this api on vercel
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fraffyamoguis%2Fgsm-arena-api)
 
 ## Endpoint
 
-### Search 
+### Search
+
 **GET** /gsm/search?q={query}
+
 ```json
 [
-    {
-        "id": "xiaomi_poco_x3_pro-10802.php",
-        "name": "Xiaomi Poco X3 Pro",
-        "image": "https://fdn2.gsmarena.com/vv/bigpic/xiaomi-poco-x3-pro-.jpg"
-    },
-    {
-        "id": "xiaomi_poco_x3_nfc-10415.php",
-        "name": "Xiaomi Poco X3 NFC",
-        "image": "https://fdn2.gsmarena.com/vv/bigpic/xiaomi-poco-x3-nfc.jpg"
-    },
-    {
-        "id": "xiaomi_poco_x3-10461.php",
-        "name": "Xiaomi Poco X3",
-        "image": "https://fdn2.gsmarena.com/vv/bigpic/xiaomi-poco-x3.jpg"
-    },
-    {
-        "id": "xiaomi_poco_x3_gt-10949.php",
-        "name": "Xiaomi Poco X3 GT",
-        "image": "https://fdn2.gsmarena.com/vv/bigpic/xiaomi-redmi-note-10-pro-china-new.jpg"
-    }
+  {
+    "id": "xiaomi_poco_x3_pro-10802.php",
+    "name": "Xiaomi Poco X3 Pro",
+    "image": "https://fdn2.gsmarena.com/vv/bigpic/xiaomi-poco-x3-pro-.jpg"
+  },
+  {
+    "id": "xiaomi_poco_x3_nfc-10415.php",
+    "name": "Xiaomi Poco X3 NFC",
+    "image": "https://fdn2.gsmarena.com/vv/bigpic/xiaomi-poco-x3-nfc.jpg"
+  },
+  {
+    "id": "xiaomi_poco_x3-10461.php",
+    "name": "Xiaomi Poco X3",
+    "image": "https://fdn2.gsmarena.com/vv/bigpic/xiaomi-poco-x3.jpg"
+  },
+  {
+    "id": "xiaomi_poco_x3_gt-10949.php",
+    "name": "Xiaomi Poco X3 GT",
+    "image": "https://fdn2.gsmarena.com/vv/bigpic/xiaomi-redmi-note-10-pro-china-new.jpg"
+  }
 ]
 ```
 
 ### Phone Info
+
 **GET** /gsm/info/:id
+
 ```json
 {
+    "name": "Xiaomi Poco X3 Pro",
     "network": "GSM / HSPA / LTE",
     "launced": {
         "announced": "2021, March 22",
