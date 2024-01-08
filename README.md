@@ -16,6 +16,11 @@ $ cd gsm-arena-api
 $ npm install #or yarn install
 ```
 
+Edit .env file
+```env
+GSM_ARENA_URL=https://www.gsmarena.com
+```
+
 Start the server
 ```sh
 npm start
@@ -80,3 +85,7 @@ Host this api on vercel
     ...
 }
 ```
+
+## Development
+
+### More endpoint are being developed feel free to create a request for contribution.
