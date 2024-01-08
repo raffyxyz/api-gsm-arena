@@ -43,8 +43,6 @@ export const scrapeInfo = async (id: string) => {
 
     const $ = cheerio.load(infoDocument.data);
 
-    // $("div#specs-list > table").each((_i, el) => {});
-
     const network = $("div#specs-list table")
       .first()
       .find("tr")
