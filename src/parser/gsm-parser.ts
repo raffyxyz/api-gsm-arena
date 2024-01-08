@@ -43,6 +43,10 @@ export const scrapeInfo = async (id: string) => {
 
     const $ = cheerio.load(infoDocument.data);
 
+    const name = $("div.review-header > div > div")
+      .find(".specs-phone-name-title")
+      .text();
+
     const network = $("div#specs-list table")
       .first()
       .find("tr")
@@ -52,59 +56,61 @@ export const scrapeInfo = async (id: string) => {
       .find("a")
       .text();
 
-    const secondTable = $("div#specs-list table:eq(1)");
-    const announced = secondTable.find("td[data-spec='year']").text();
-    const status = secondTable.find("td[data-spec='status']").text();
+    const launchTable = $("div#specs-list table:eq(1)");
+    const announced = launchTable.find("td[data-spec='year']").text();
+    const status = launchTable.find("td[data-spec='status']").text();
 
-    const thirdTable = $("div#specs-list table:eq(2)");
-    const dimension = thirdTable.find("td[data-spec='dimensions']").text();
-    const weight = thirdTable.find("td[data-spec='weight']").text();
-    const sim = thirdTable.find("td[data-spec='sim']").text();
-    const other = thirdTable.find("td[data-spec='bodyother']").text();
+    const bodyTable = $("div#specs-list table:eq(2)");
+    const dimension = bodyTable.find("td[data-spec='dimensions']").text();
+    const weight = bodyTable.find("td[data-spec='weight']").text();
+    const sim = bodyTable.find("td[data-spec='sim']").text();
+    const other = bodyTable.find("td[data-spec='bodyother']").text();
 
-    const fourthTable = $("div#specs-list table:eq(3)");
-    const type = fourthTable.find("td[data-spec='displaytype']").text();
-    const size = fourthTable.find("td[data-spec='displaysize']").text();
-    const resolution = fourthTable
+    const displayTable = $("div#specs-list table:eq(3)");
+    const type = displayTable.find("td[data-spec='displaytype']").text();
+    const size = displayTable.find("td[data-spec='displaysize']").text();
+    const resolution = displayTable
       .find("td[data-spec='displayresolution']")
       .text();
-    const protection = fourthTable
+    const protection = displayTable
       .find("td[data-spec='displayprotection']")
       .text();
-    const displayOther = fourthTable
+    const displayOther = displayTable
       .find("td[data-spec='displayother']")
       .text();
 
-    const fifthTable = $("div#specs-list table:eq(4)");
-    const os = fifthTable.find("td[data-spec='os']").text();
-    const chipset = fifthTable.find("td[data-spec='chipset']").text();
-    const cpu = fifthTable.find("td[data-spec='cpu']").text();
-    const gpu = fifthTable.find("td[data-spec='gpu']").text();
+    const platformTable = $("div#specs-list table:eq(4)");
+    const os = platformTable.find("td[data-spec='os']").text();
+    const chipset = platformTable.find("td[data-spec='chipset']").text();
+    const cpu = platformTable.find("td[data-spec='cpu']").text();
+    const gpu = platformTable.find("td[data-spec='gpu']").text();
 
-    const sixthTable = $("div#specs-list table:eq(5)");
-    const card = sixthTable.find("td[data-spec='memoryslot']").text();
-    const internal = sixthTable.find("td[data-spec='internalmemory']").text();
-    const otherMemory = sixthTable.find("td[data-spec='memoryother']").text();
+    const memoryTable = $("div#specs-list table:eq(5)");
+    const card = memoryTable.find("td[data-spec='memoryslot']").text();
+    const internal = memoryTable.find("td[data-spec='internalmemory']").text();
+    const otherMemory = memoryTable.find("td[data-spec='memoryother']").text();
 
-    const seventhTable = $("div#specs-list table:eq(6)");
-    const mainModules = seventhTable
+    const mainCameraTable = $("div#specs-list table:eq(6)");
+    const mainModules = mainCameraTable
       .find("td[data-spec='cam1modules']")
       .text()
       .trim();
-    const mainFeatures = seventhTable
+    const mainFeatures = mainCameraTable
       .find("td[data-spec='cam1features']")
       .text();
-    const mainVideo = seventhTable.find("td[data-spec='cam1video']").text();
+    const mainVideo = mainCameraTable.find("td[data-spec='cam1video']").text();
 
-    const eightTable = $("div#specs-list table:eq(7)");
-    const selfieModules = eightTable
+    const selfieCameraTable = $("div#specs-list table:eq(7)");
+    const selfieModules = selfieCameraTable
       .find("td[data-spec='cam2modules']")
       .text()
       .trim();
-    const selfieFeatures = eightTable
+    const selfieFeatures = selfieCameraTable
       .find("td[data-spec='cam2features']")
       .text();
-    const selfieVideo = eightTable.find("td[data-spec='cam2video']").text();
+    const selfieVideo = selfieCameraTable
+      .find("td[data-spec='cam2video']")
+      .text();
 
     const soundTable = $("div#specs-list table:eq(8)");
     const loudSpeaker = soundTable.find("tr:eq(0) td.nfo").text().trim();
@@ -134,6 +140,7 @@ export const scrapeInfo = async (id: string) => {
     const models = miscTable.find("td[data-spec='models']").text();
 
     return {
+      name,
       network,
       launced: { announced, status },
       body: { dimension, weight, sim, other },
