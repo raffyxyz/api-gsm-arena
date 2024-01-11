@@ -47,6 +47,10 @@ export const scrapeInfo = async (id: string) => {
       .find(".specs-phone-name-title")
       .text();
 
+    const cover = $("div.review-header > div > div > div.specs-photo-main > a")
+      .find("img")
+      .attr("src");
+
     const network = $("div#specs-list table")
       .first()
       .find("tr")
@@ -141,6 +145,7 @@ export const scrapeInfo = async (id: string) => {
 
     return {
       name,
+      cover,
       network,
       launced: { announced, status },
       body: { dimension, weight, sim, other },
