@@ -95,6 +95,22 @@ Host this api on vercel
 }
 ```
 
+### Phone Images
+
+**GET** /gsm/images/:id
+
+```json
+{
+    "id": "xiaomi_poco_x3_pro-pictures-10802.php",
+    "images": [
+        "https://fdn2.gsmarena.com/vv/pics/xiaomi/xiaomi-poco-x3-pro-1.jpg",
+        "https://fdn.gsmarena.com/imgroot/reviews/21/poco-x3-pro/lifestyle/-1024w2/gsmarena_001.jpg",
+        "https://fdn.gsmarena.com/imgroot/reviews/21/poco-x3-pro/lifestyle/-1024w2/gsmarena_002.jpg",
+        "https://fdn.gsmarena.com/imgroot/reviews/21/poco-x3-pro/lifestyle/-1024w2/gsmarena_003.jpg"
+    ],
+}
+```
+
 ## Development
 
 ### More endpoint are being developed feel free to create a request for contribution.
