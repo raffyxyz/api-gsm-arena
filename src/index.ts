@@ -18,4 +18,8 @@ server.listen(8080, () => {
   console.log("Server running on http://localhost:8080/");
 });
 
+app.get("/", (req: express.Request, res: express.Response) => {
+  res.status(200).send("Welcome to gsm arena api 🎉");
+});
+
 app.use("/", router());
