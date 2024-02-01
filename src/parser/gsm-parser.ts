@@ -151,11 +151,14 @@ export const scrapeInfo = async (id: string) => {
       body: { dimension, weight, sim, other },
       display: { type, size, resolution, protection, displayOther },
       platform: { os, chipset, cpu, gpu },
-      memory: {
-        card,
-        internal,
-        otherMemory,
-      },
+      memory: [
+        {
+          label: "card",
+          value: card,
+        },
+        { label: "internal", value: internal },
+        { label: "otherMemory", value: otherMemory },
+      ],
       mainCamera: {
         mainModules,
         mainFeatures,
@@ -190,6 +193,29 @@ export const scrapeInfo = async (id: string) => {
         models,
       },
     };
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const scrapeImages = async (id: string) => {
+  try {
+    const imageDocument = await axios.get(`${GSM_ARENA}/${id}`);
+
+    const $ = cheerio.load(imageDocument.data);
+
+    // Select the first h2 element within the pictures-list class
+    const firstH2 = $("#pictures-list h2").first();
+
+    // Select all the img elements that come after the first h2
+    const imagesAfterFirstH2 = firstH2.nextAll("img");
+
+    // Extract the src attribute from each img element
+    const imageLinks = imagesAfterFirstH2
+      .map((index, element) => $(element).attr("src"))
+      .get();
+
+    return imageLinks;
   } catch (error) {
     console.log(error);
   }
